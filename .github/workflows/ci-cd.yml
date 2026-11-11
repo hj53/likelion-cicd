@@ -54,7 +54,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            IMAGE=${{ secrets.DOCKER_USERNAME }}/likelion-cicd:${{ github.sha }}
-            docker pull $IMAGE
-            docker rm -f app || true    
-            docker run -d --name app -p 80:8080 $IMAGE
+            bash ~/deploy/deploy.sh ${{ secrets.DOKER_USERNAME }}/likelioin-cicd:$${{ github.sha }} 
+
+#            IMAGE=${{ secrets.DOCKER_USERNAME }}/likelion-cicd:${{ github.sha }}
+#            docker pull $IMAGE
+#            docker rm -f app || true
+#            docker run -d --name app -p 80:8080 $IMAGE
